@@ -1,6 +1,4 @@
 # labit_back
 repositorio backend de labit
 
-simplemente estoy creando una linea para saber que pasa cuando hago un merge
-
-holi, ya vi el nuevo repo
+Se debe solicitar acceso al dueño del repo @jpenagos32 para poder empezar a trabajar
