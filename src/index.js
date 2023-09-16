@@ -10,18 +10,15 @@ const app = require('./app');
 const port = process.env.PORT || 3001;
 const { sequelize } = require('./database/database.js');
 
-const connectDb = async () => {
-	try {
-		await sequelize.authenticate();
-		console.log('connection to DB ok');
+sequelize
+	.sync({ force: false })
+	.then(() => {
 		app.listen(port, () => {
-			console.log(`Server Listening on port ${port}`);
+			console.log(`Server listening on port ${port}`);
 		});
-	} catch (error) {
-		console.error('unable to connect to DB', error);
-	}
-};
-
-connectDb();
+	})
+	.catch((error) => {
+		console.error(`error connecting to DB`, error);
+	});
 
 module.exports = app;
