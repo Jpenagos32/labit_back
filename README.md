@@ -1,4 +1,9 @@
 # Backend Labit
+
 repositorio backend de labit
 
-Se debe solicitar acceso al dueño del repo ```@jpenagos32``` para poder empezar a trabajar
+este repositorio contiene el backend de labit
+
+Se usa sequelize para definir las bases de datos
+
+El tipo de base de datos usado es `MySQL`
