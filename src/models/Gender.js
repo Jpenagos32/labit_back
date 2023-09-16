@@ -8,7 +8,7 @@ Descripción = Archivo que contiene el modelado de la tabla gender de la base de
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../database/database');
 
-const gender = sequelize.define(
+const Gender = sequelize.define(
 	'gender',
 	{
 		id_gender: {
@@ -25,4 +25,4 @@ const gender = sequelize.define(
 	{ timestamps: false }
 );
 
-module.exports = gender;
+module.exports = Gender;

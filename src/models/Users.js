@@ -7,12 +7,12 @@ Descripción = Archivo que contiene el modelado de la tabla users de la base de 
 */
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../database/database');
-const coverage_type = require('./CoverageType');
-const gender = require('./Gender');
-const user_types = require('./UserTypes');
-const identification_types = require('./IdentificationTypes');
+const CoverageType = require('./CoverageType');
+const Gender = require('./Gender');
+const UserTypes = require('./UserTypes');
+const IdentificationTypes = require('./IdentificationTypes');
 
-const users = sequelize.define(
+const Users = sequelize.define(
 	'users',
 	{
 		id_users: {
@@ -22,24 +22,31 @@ const users = sequelize.define(
 		},
 		first_name: {
 			type: DataTypes.STRING,
+			allowNull: false,
 		},
 		last_name: {
 			type: DataTypes.STRING,
+			allowNull: false,
 		},
 		birth: {
-			type: DataTypes.DATE,
+			type: DataTypes.DATEONLY,
+			allowNull: false,
 		},
 		tel: {
 			type: DataTypes.INTEGER,
 		},
 		email: {
 			type: DataTypes.STRING,
+			allowNull: false,
 		},
 		password: {
 			type: DataTypes.STRING,
+			allowNull: false,
 		},
 		identification_number: {
 			type: DataTypes.INTEGER,
+			allowNull: false,
+			unique: true,
 		},
 		affiliate_number: {
 			type: DataTypes.STRING,
@@ -51,32 +58,32 @@ const users = sequelize.define(
 );
 
 // Deinir las relaciones de las tablas
-users.hasOne(gender, {
+Users.hasOne(Gender, {
 	foreignKey: 'users_id',
 });
-gender.belongsTo(users, {
-	foreignKey: 'users_id',
-});
-
-users.hasOne(coverage_type, {
-	foreignKey: 'users_id',
-});
-coverage_type.belongsTo(users, {
+Gender.belongsTo(Users, {
 	foreignKey: 'users_id',
 });
 
-users.hasMany(user_types, {
+Users.hasOne(CoverageType, {
 	foreignKey: 'users_id',
 });
-user_types.belongsTo(users, {
-	foreignKey: 'users_id',
-});
-
-users.hasOne(identification_types, {
-	foreignKey: 'users_id',
-});
-identification_types.belongsTo(users, {
+CoverageType.belongsTo(Users, {
 	foreignKey: 'users_id',
 });
 
-module.exports = users;
+Users.hasMany(UserTypes, {
+	foreignKey: 'users_id',
+});
+UserTypes.belongsTo(Users, {
+	foreignKey: 'users_id',
+});
+
+Users.hasOne(IdentificationTypes, {
+	foreignKey: 'users_id',
+});
+IdentificationTypes.belongsTo(Users, {
+	foreignKey: 'users_id',
+});
+
+module.exports = Users;
