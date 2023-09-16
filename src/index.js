@@ -9,9 +9,14 @@ require('dotenv').config();
 const app = require('./app');
 const port = process.env.PORT || 3001;
 const { sequelize } = require('./database/database.js');
+require('./models/Users.js');
+require('./models/CoverageType');
+require('./models/Gender');
+require('./models/IdentificationTypes');
+require('./models/UserTypes');
 
 sequelize
-	.sync({ force: false })
+	.sync({ force: true })
 	.then(() => {
 		app.listen(port, () => {
 			console.log(`Server listening on port ${port}`);
