@@ -8,7 +8,7 @@ Descripción = Archivo que contiene el modelado de la tabla user_types de la bas
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../database/database');
 
-sequelize.define(
+const user_types = sequelize.define(
 	'user_types',
 	{
 		id_user_types: {
@@ -24,3 +24,5 @@ sequelize.define(
 	},
 	{ timestamps: false }
 );
+
+module.exports = user_types;

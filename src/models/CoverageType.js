@@ -8,7 +8,7 @@ Descripción = Archivo que contiene el modelado de la tabla coverage_type de la 
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../database/database');
 
-sequelize.define(
+const coverage_type = sequelize.define(
 	'coverage_type',
 	{
 		id_coverage_type: {
@@ -24,3 +24,5 @@ sequelize.define(
 	},
 	{ timestamps: false }
 );
+
+module.exports = coverage_type;

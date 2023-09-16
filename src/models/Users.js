@@ -7,8 +7,12 @@ Descripción = Archivo que contiene el modelado de la tabla users de la base de 
 */
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../database/database');
+const coverage_type = require('./CoverageType');
+const gender = require('./Gender');
+const user_types = require('./UserTypes');
+const identification_types = require('./IdentificationTypes');
 
-sequelize.define(
+const users = sequelize.define(
 	'users',
 	{
 		id_users: {
@@ -45,3 +49,34 @@ sequelize.define(
 		timestamps: false,
 	}
 );
+
+// Deinir las relaciones de las tablas
+users.hasOne(gender, {
+	foreignKey: 'users_id',
+});
+gender.belongsTo(users, {
+	foreignKey: 'users_id',
+});
+
+users.hasOne(coverage_type, {
+	foreignKey: 'users_id',
+});
+coverage_type.belongsTo(users, {
+	foreignKey: 'users_id',
+});
+
+users.hasMany(user_types, {
+	foreignKey: 'users_id',
+});
+user_types.belongsTo(users, {
+	foreignKey: 'users_id',
+});
+
+users.hasOne(identification_types, {
+	foreignKey: 'users_id',
+});
+identification_types.belongsTo(users, {
+	foreignKey: 'users_id',
+});
+
+module.exports = users;
