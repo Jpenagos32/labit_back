@@ -2,11 +2,24 @@
 
 repositorio backend de labit
 
-este repositorio contiene el backend de labit
+-   Este repositorio contiene el backend de labit
 
-Se usa sequelize para definir las bases de datos
+-   Se usa sequelize para definir las bases de datos
 
-El tipo de base de datos usado es `MySQL`
+-   El tipo de base de datos usado es `MySQL`
+
+-   Para poder usar el proyecto en local se deben instalar dependencias usando el comando `npm install`
+
+-   Debe proveerse un archivo `.env` en la raíz del proyecto para que este funcione, la estructura del `.env` debe ser como la siguiente.
+
+```bash
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=usuarioDB
+DB_PASSWORD=passwordDB
+DB_NAME=nombreDB
+PORT=3001
+```
 
 ## API
 
