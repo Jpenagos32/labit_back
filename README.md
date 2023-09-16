@@ -20,7 +20,7 @@ DB_PASSWORD=passwordDB
 DB_NAME=labit_db
 PORT=3001
 ```
--   Recuerde que debe actualizar el archivo `.env` dependiendo de las credenciales de su `RDMS`.
+-   Recuerde que debe actualizar el archivo `.env` dependiendo de las credenciales de su `RDBMS`.
   
 -   Para que el proyecto funcione correctamente, debe existir una base de datos llamada `labit_db`, esta se debe crear manualmente.
 
