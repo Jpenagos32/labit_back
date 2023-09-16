@@ -8,7 +8,7 @@ Descripción = Archivo que contiene el modelado de la tabla identification_types
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../database/database');
 
-const identification_types = sequelize.define(
+const IdentificationTypes = sequelize.define(
 	'identification_types',
 	{
 		id_identification_types: {
@@ -24,4 +24,4 @@ const identification_types = sequelize.define(
 	},
 	{ timestamps: false }
 );
-module.exports = identification_types;
+module.exports = IdentificationTypes;
