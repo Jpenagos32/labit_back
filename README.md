@@ -12,8 +12,6 @@ repositorio backend de labit
 
 -   Debe proveerse un archivo `.env` en la raíz del proyecto para que este funcione, la estructura del `.env` debe ser como la siguiente.
 
--   Para que el proyecto funcione correctamente, debe existir una base de datos llamada `labit_db`, esta se debe crear manualmente.
-
 ```bash
 DB_HOST=localhost
 DB_PORT=3306
@@ -22,6 +20,10 @@ DB_PASSWORD=passwordDB
 DB_NAME=labit_db
 PORT=3001
 ```
+-   Recuerde que debe actualizar el archivo `.env` dependiendo de las credenciales de su `RDMS`.
+  
+-   Para que el proyecto funcione correctamente, debe existir una base de datos llamada `labit_db`, esta se debe crear manualmente.
+
 
 ## API
 
