@@ -12,7 +12,7 @@ El tipo de base de datos usado es `MySQL`
 
 ### /users
 
-La ruta cuenta con el CRUD completo
+La ruta cuenta con el `CRUD` completo
 
 1. **GET**: al hacer una peticion de tipo get, se puede proveer un numero de identificación por medio de query string, por lo cual traerá al usuario que coincida con el criterio de busqueda. De lo contrario, al no proveer un número de identificación, esta ruta obtendrá todos los usuarios disponibles en la base de datos
 
