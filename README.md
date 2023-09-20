@@ -24,6 +24,11 @@ PORT=3001
   
 -   Para que el proyecto funcione correctamente, debe existir una base de datos llamada `labit_db`, esta se debe crear manualmente.
 
+## ER 
+
+<p align='center'>
+  <img src='https://github.com/Jpenagos32/labit_back/assets/111212922/65d609a3-1656-4af9-a4c1-eb346dba543c'>
+</p>
 
 ## API
 
