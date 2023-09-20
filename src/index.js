@@ -16,7 +16,7 @@ require('./models/IdentificationTypes');
 require('./models/UserTypes');
 
 sequelize
-	.sync({ force: false })
+	.sync({ force: true })
 	.then(() => {
 		app.listen(port, () => {
 			console.log(`Server listening on port ${port}`);
