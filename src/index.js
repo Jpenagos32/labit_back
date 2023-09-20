@@ -44,6 +44,7 @@ sequelize
 	})
 	.then(() => {
 		// Guardar todos los tipos de usuarios al cargar el script
+		// ! verificar si están todos los tipos de usuarios, o si faltan o si sobran
 		const userTypes = ['Admin', 'Medico', 'Usuario', 'Paciente'];
 		return Promise.all(
 			userTypes.map((user) => {
