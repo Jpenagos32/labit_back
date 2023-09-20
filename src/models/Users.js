@@ -58,32 +58,32 @@ const Users = sequelize.define(
 );
 
 // Deinir las relaciones de las tablas
-Users.hasOne(Gender, {
-	foreignKey: 'users_id',
+Gender.hasOne(Users, {
+	foreignKey: 'gender_id',
 });
-Gender.belongsTo(Users, {
-	foreignKey: 'users_id',
-});
-
-Users.hasOne(CoverageType, {
-	foreignKey: 'users_id',
-});
-CoverageType.belongsTo(Users, {
-	foreignKey: 'users_id',
+Users.belongsTo(Gender, {
+	foreignKey: 'gender_id',
 });
 
-Users.hasMany(UserTypes, {
-	foreignKey: 'users_id',
+CoverageType.hasOne(Users, {
+	foreignKey: 'coverage_type_id',
 });
-UserTypes.belongsTo(Users, {
-	foreignKey: 'users_id',
+Users.belongsTo(CoverageType, {
+	foreignKey: 'coverage_type_id',
 });
 
-Users.hasOne(IdentificationTypes, {
-	foreignKey: 'users_id',
+UserTypes.hasMany(Users, {
+	foreignKey: 'user_types_id',
 });
-IdentificationTypes.belongsTo(Users, {
-	foreignKey: 'users_id',
+Users.belongsTo(UserTypes, {
+	foreignKey: 'user_types_id',
+});
+
+IdentificationTypes.hasOne(Users, {
+	foreignKey: 'identification_types_id',
+});
+Users.belongsTo(IdentificationTypes, {
+	foreignKey: 'identification_types_id',
 });
 
 module.exports = Users;
