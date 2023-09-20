@@ -13,21 +13,38 @@ Funciones:
 4-deleteUsers   = Función encargada de eliminar un usuario de la base de datos, debe proveerse un numero de identificacion valido
 ===================================================================================================================================
 */
+const CoverageType = require('../models/CoverageType');
+const Gender = require('../models/Gender');
+const IdentificationTypes = require('../models/IdentificationTypes');
+const UserTypes = require('../models/UserTypes');
 const Users = require('../models/Users');
 
 const getUsers = async (req, res) => {
-	const { id } = req.query;
+	const { identification_number } = req.query;
 	try {
 		let usersFound;
 
-		if (id) {
+		if (identification_number) {
 			usersFound = await Users.findOne({
 				where: {
-					identification_number: id,
+					identification_number,
 				},
+				include: [
+					{ model: Gender },
+					{ model: IdentificationTypes },
+					{ model: CoverageType },
+					{ model: UserTypes },
+				],
 			});
 		} else {
-			usersFound = await Users.findAll();
+			usersFound = await Users.findAll({
+				include: [
+					{ model: Gender, attributes: ['gender_description'] },
+					{ model: IdentificationTypes },
+					{ model: CoverageType },
+					{ model: UserTypes },
+				],
+			});
 		}
 
 		if (!usersFound) {
@@ -52,6 +69,10 @@ const postUsers = async (req, res) => {
 		identification_number,
 		tel,
 		affiliate_number,
+		gender_id,
+		identification_types_id,
+		coverage_type_id,
+		user_types_id,
 	} = req.body;
 
 	let query = {
@@ -61,6 +82,10 @@ const postUsers = async (req, res) => {
 		email,
 		password,
 		identification_number,
+		gender_id,
+		identification_types_id,
+		coverage_type_id,
+		user_types_id,
 	};
 	try {
 		if (!identification_number) {
@@ -81,18 +106,70 @@ const postUsers = async (req, res) => {
 };
 
 const putUsers = async (req, res) => {
-	const { id } = req.params;
+	const {
+		identification_number,
+		first_name,
+		last_name,
+		birth,
+		tel,
+		email,
+		affiliate_number,
+		password,
+		gender_id,
+		identification_types_id,
+		coverage_type_id,
+		user_types_id,
+	} = req.body;
 	try {
-		res.status(200).send(`updating user ${id}`);
+		if (!identification_number)
+			throw new Error('Must provide an identification_number');
+
+		const user = await Users.findOne({
+			where: {
+				identification_number,
+			},
+		});
+
+		if (first_name) user.first_name = first_name;
+		if (last_name) user.last_name = last_name;
+		if (birth) user.birth = birth;
+		if (tel) user.tel = tel;
+		if (email) user.email = email;
+		if (affiliate_number) user.affiliate_number = affiliate_number;
+		if (password) user.password = password;
+		if (gender_id) user.gender_id = gender_id;
+		if (identification_types_id)
+			user.identification_types_id = identification_types_id;
+		if (coverage_type_id) user.coverage_type_id = coverage_type_id;
+		if (user_types_id) user.user_types_id = user_types_id;
+
+		await user.save();
+
+		res.status(200).json({ message: 'User updated', user });
 	} catch (error) {
 		res.status(400).json({ error: error.message });
 	}
 };
 
 const deleteUsers = async (req, res) => {
-	const { id } = req.params;
+	const { identification_number } = req.query;
 	try {
-		res.status(200).send(`deleting user ${id}`);
+		if (!identification_number)
+			throw new Error('Must provide an identification_number');
+
+		const userDeleted = await Users.destroy({
+			where: {
+				identification_number,
+			},
+		});
+
+		if (!userDeleted) {
+			return res.status(404).json({
+				message: `User ${identification_number} does not exist`,
+			});
+		}
+
+		res.status(200).json({ message: 'User deleted', userDeleted });
 	} catch (error) {
 		res.status(400).json({ error: error.message });
 	}
