@@ -58,7 +58,7 @@ La ruta cuenta con el `CRUD` completo
   "user_types_id": 1
 }
 ```
-3. **PUT**: busca por identification_number el cual es un campo requerido y actualiza el registro que coincida con ese número de identificación
+3. **PUT**: busca por `identification_number` el cual es un campo requerido y actualiza el registro que coincida con ese número de identificación
 
 ```javascript
 {
