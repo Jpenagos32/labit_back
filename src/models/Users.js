@@ -33,7 +33,7 @@ const Users = sequelize.define(
 			allowNull: false,
 		},
 		tel: {
-			type: DataTypes.INTEGER,
+			type: DataTypes.BIGINT,
 		},
 		email: {
 			type: DataTypes.STRING,
@@ -59,28 +59,40 @@ const Users = sequelize.define(
 
 // Deinir las relaciones de las tablas
 Gender.hasOne(Users, {
-	foreignKey: 'gender_id',
+	foreignKey: {
+		name: 'gender_id',
+		allowNull: false,
+	},
 });
 Users.belongsTo(Gender, {
 	foreignKey: 'gender_id',
 });
 
 CoverageType.hasOne(Users, {
-	foreignKey: 'coverage_type_id',
+	foreignKey: {
+		name: 'coverage_type_id',
+		allowNull: false,
+	},
 });
 Users.belongsTo(CoverageType, {
 	foreignKey: 'coverage_type_id',
 });
 
 UserTypes.hasMany(Users, {
-	foreignKey: 'user_types_id',
+	foreignKey: {
+		name: 'user_types_id',
+		allowNull: false,
+	},
 });
 Users.belongsTo(UserTypes, {
 	foreignKey: 'user_types_id',
 });
 
 IdentificationTypes.hasOne(Users, {
-	foreignKey: 'identification_types_id',
+	foreignKey: {
+		name: 'identification_types_id',
+		allowNull: false,
+	},
 });
 Users.belongsTo(IdentificationTypes, {
 	foreignKey: 'identification_types_id',
